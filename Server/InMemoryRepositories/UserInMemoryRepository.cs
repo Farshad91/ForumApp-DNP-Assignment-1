@@ -5,7 +5,30 @@ namespace InMemoryRepositories;
 
 public class UserInMemoryRepository : IUserRepository
 {
-    private readonly List<User> users = new();
+    private readonly List<User> users = new()
+    {
+        new User
+        {
+            Id = 1,
+            Username = "Alice",
+            Password = "1234"
+        },
+
+        new User
+        {
+            Id = 2,
+            Username = "Bob",
+            Password = "1234"
+        },
+
+        new User
+        {
+            Id = 3,
+            Username = "Charlie",
+            Password = "1234"
+        }
+    };
+    
 
     public Task<User> AddAsync(User user)
     {
@@ -62,7 +85,7 @@ public class UserInMemoryRepository : IUserRepository
         return Task.FromResult(user);
     }
 
-    public IQueryable<User> GetManyAsync()
+    public IQueryable<User> GetMany()
     {
         return users.AsQueryable();
     }

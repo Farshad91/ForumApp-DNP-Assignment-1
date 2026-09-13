@@ -5,8 +5,34 @@ namespace InMemoryRepositories;
 
 public class CommentInMemoryRepository : ICommentRepository
 {
-    private readonly List<Comment> comments = new();
+    private readonly List<Comment> comments = new()
+    {
+        new Comment
+        {
+            Id = 1,
+            Body = "Nice first post!",
+            UserId = 2,
+            PostId = 1
+        },
 
+        new Comment
+        {
+            Id = 2,
+            Body = "I agree, C# is interesting.",
+            UserId = 3,
+            PostId = 2
+        },
+
+        new Comment
+        {
+            Id = 3,
+            Body = "Welcome to the forum!",
+            UserId = 1,
+            PostId = 3
+        }
+    };
+    
+    
     public Task<Comment> AddAsync(Comment comment)
     {
         comment.Id = comments.Any()
@@ -65,7 +91,7 @@ public class CommentInMemoryRepository : ICommentRepository
         return Task.FromResult(comment);
     }
 
-    public IQueryable<Comment> GetManyAsync()
+    public IQueryable<Comment> GetMany()
     {
         return comments.AsQueryable();
     }
