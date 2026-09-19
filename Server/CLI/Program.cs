@@ -1,11 +1,11 @@
-﻿using CLI.UI;  //Access to CliApp
-using InMemoryRepositories; 
+﻿using CLI.UI; // Access to CliApp
+using FileRepositories;
 using RepositoryContracts;
 
-// making the actual repository objects 
-IUserRepository userRepository = new UserInMemoryRepository();
-IPostRepository postRepository = new PostInMemoryRepository();
-ICommentRepository commentRepository = new CommentInMemoryRepository();
+// making the actual repository objects
+IUserRepository userRepository = new UserFileRepository();
+IPostRepository postRepository = new PostFileRepository();
+ICommentRepository commentRepository = new CommentFileRepository();
 
 // Create CliApp and give it the three repositories
 CliApp cliApp = new CliApp(
@@ -14,7 +14,5 @@ CliApp cliApp = new CliApp(
     commentRepository
 );
 
-{
 // Starts the command line application
-    await cliApp.StartAsync();
-}
+await cliApp.StartAsync();
